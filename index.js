@@ -6,6 +6,7 @@ const prompts = require("prompts");
 const consola = require("consola");
 const internal = require("stream");
 const argv = require("minimist")(process.argv.slice(2))
+
 //config for token
 var config = require(path.join(__dirname, "config.json"))
 
@@ -107,6 +108,9 @@ function init(template, name, des) {
     stuff.description = des;
 
     fs.writeFileSync(packagePath, JSON.stringify(stuff));
+
+    //Writing in env
+    fs.writeFileSync(path.join(cwd, name, ".env"), `DISCORD_TOKEN=${botToken}`)
 
     //end
     console.log(` `)
