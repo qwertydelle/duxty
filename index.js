@@ -135,6 +135,12 @@ function init(template, name, des, options) {
     stuff.name = name;
     stuff.description = des;
 
+
+    //adding optional additions
+    for(let i of options) {
+        stuff.dependencies[i] = "latest"
+    }
+
     fs.writeFileSync(packagePath, JSON.stringify(stuff));
 
     //Writing in env
