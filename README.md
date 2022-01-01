@@ -6,4 +6,4 @@ Use `duxt` to setup a bot in an instant based on default templates and user crea
 
 :)
 - [x]  Project scaffolding
-- [ ]  Watch mode
+- [ ]  Optional features

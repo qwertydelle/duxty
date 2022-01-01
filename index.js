@@ -17,6 +17,12 @@ var choices = getTemplates();
 var cwd = process.cwd();
 
 
+var optionChoices = [
+    {title: "git", value: true},
+    {title: "node_fetch", value: true},
+    {title: "interactions", value: true},
+]
+
 //options
 const questions = [
     {
@@ -35,6 +41,13 @@ const questions = [
         name: "template",
         message: "Pick a template?",
         choices: choices
+    },
+    {
+        type: "multiselect",
+        name: "options",
+        message: "Select any additional options?",
+        choices: optionChoices,
+        hint: '- > Space to select. Return to submit'
     }
 ];
 
@@ -43,6 +56,7 @@ const questions = [
     const response = await prompts(questions);
 
     var destDir = path.join(cwd, response.projectName);
+
 
     if(fs.existsSync(destDir)) {
         consola.error(new Error("Directory already exists"));
@@ -60,12 +74,12 @@ const questions = [
                 fsExtra.removeSync(destDir);
                 consola.info(`${destDir} replaced`);
                 fs.mkdirSync(path.join(cwd, response.projectName))
-                init(response.template, response.projectName, response.description)
+                init(response.template, response.projectName, response.description, response.options)
             }
         })();
     }else {
         fs.mkdirSync(path.join(cwd, response.projectName))
-        init(response.template, response.projectName, response.description)
+        init(response.template, response.projectName, response.description, response.options)
     }
 })();
 
@@ -96,9 +110,23 @@ function copy(template, cwd) {
     fs.copyFileSync(template, cwd, fs.constants.COPYFILE_EXCL);
 }
 
-function init(template, name, des) {
+function writeInFile(filePath) {
+    //later
+}
+
+function init(template, name, des, options) {
     fs.readdirSync(template).forEach((value) => {
-        copy(path.join(template, value), path.join(cwd,name,value))
+
+        //check if the user wants to use git
+        if(value === ".gitignore"){
+            if(options[0]) {
+                copy(path.join(template, value), path.join(cwd,name,value));
+            }else {
+                return
+            }
+        }else {
+            copy(path.join(template, value), path.join(cwd,name,value))
+        }
     });
 
     //changing package.json
