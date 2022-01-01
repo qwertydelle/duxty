@@ -137,8 +137,12 @@ function init(template, name, des, options) {
 
 
     //adding optional additions
-    for(let i of options) {
-        stuff.dependencies[i] = "latest"
+    if (options[1]) {
+        stuff.dependencies["node_fetch"] = "latest"
+    }
+
+    if (options[2]) {
+        //later
     }
 
     fs.writeFileSync(packagePath, JSON.stringify(stuff));
