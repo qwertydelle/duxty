@@ -18,9 +18,9 @@ var cwd = process.cwd();
 
 
 var optionChoices = [
-    {title: "git", value: true},
-    {title: "node_fetch", value: true},
-    {title: "interactions", value: true},
+    {title: "git", value: "git"},
+    {title: "node_fetch", value: "node_fetch"},
+    {title: "interactions", value: "interactions"},
 ]
 
 //options
@@ -110,8 +110,14 @@ function copy(template, cwd) {
     fs.copyFileSync(template, cwd, fs.constants.COPYFILE_EXCL);
 }
 
-function writeInFile(filePath) {
-    //later
+function writeInFile(filePath, content) {
+    var data = fs.readFileSync(filePath)
+    var stream = fs.createWriteStream(filePath);
+
+
+    let final = content.join("\r\n")
+
+    stream.write(final + data)
 }
 
 function init(template, name, des, options) {
@@ -134,21 +140,28 @@ function init(template, name, des, options) {
     let stuff = require(packagePath)
     stuff.name = name;
     stuff.description = des;
+    let writeContent = [];
 
 
-    //adding optional additions
-    if (options[1]) {
-        stuff.dependencies["node_fetch"] = "latest"
-    }
 
-    if (options[2]) {
-        //later
-    }
+    options.forEach( value => {
+        if (value === "node_fetch") {
+            stuff.dependencies["node_fetch"] = "latest"
+            writeContent.push(`const fetch = require("node_fetch);\n`)
+        }else if(value === "interactions") {
+            //quick
+        }
+    })
+
 
     fs.writeFileSync(packagePath, JSON.stringify(stuff));
 
     //Writing in env
     fs.writeFileSync(path.join(cwd, name, ".env"), `DISCORD_TOKEN=${botToken}`)
+
+    if(writeContent.length > 0) {
+        writeInFile(path.join(cwd, name, "index.js"), writeContent)
+    }
 
     //end
     console.log(` `)
