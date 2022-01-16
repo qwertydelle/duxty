@@ -17,10 +17,8 @@ var choices = getTemplates();
 var cwd = process.cwd();
 
 
-var optionChoices = [
-    {title: "git", value: "git"},
-    {title: "node_fetch", value: "node_fetch"},
-    {title: "interactions", value: "interactions"},
+var optionChoices = [,
+    {title: "node_fetch", value: "node_fetch"},,
 ]
 
 //options
@@ -146,8 +144,8 @@ function init(template, name, des, options) {
 
     options.forEach( value => {
         if (value === "node_fetch") {
-            stuff.dependencies["node_fetch"] = "latest"
-            writeContent.push(`const fetch = require("node_fetch);\n`)
+            stuff.dependencies["node-fetch"] = "2.6.7"
+            writeContent.push(`const fetch = require("node-fetch");\n`)
         }else if(value === "interactions") {
             //quick
         }
