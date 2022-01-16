@@ -1,4 +1,4 @@
-# Duxt
+# Duxty
 
 Duxt is a tool for making discord bots that makes it easy to setup bots
 

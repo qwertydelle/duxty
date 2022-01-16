@@ -1,7 +1,7 @@
 {
-  "name": "duxt",
+  "name": "duxty",
   "version": "1.0.0",
-  "description": "Discord.js setups",
+  "description": "Discord.js setups done right",
   "main": "index.js",
   "scripts": {
     "test": "node ./index.js"
