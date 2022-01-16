@@ -1,7 +1,8 @@
 const Eris = require("eris");
 const result = require('dotenv').config();
+const token = process.env.DISCORD_TOKEN;
 
-const bot = new Eris(cprocess.env.DISCORD_TOKEN, {
+const bot = new Eris(token, {
     intents: [
         "guildMessages"
     ]

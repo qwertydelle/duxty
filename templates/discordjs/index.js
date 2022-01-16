@@ -1,5 +1,7 @@
 // Require the necessary discord.js classes
 const { Client, Intents } = require('discord.js');
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
 const result = require('dotenv').config()
 const token = process.env.DISCORD_TOKEN;
 

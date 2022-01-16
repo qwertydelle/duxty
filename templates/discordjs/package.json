@@ -8,7 +8,9 @@
   },
   "dependencies": {
   	"discord.js": "latest",
-    "dotenv": "latest"
+    "dotenv": "latest",
+    "discord-api-types": "latest",
+    "@discordjs/rest": "latest"
    },
    "devDependencies": {
    	"eslint": "latest"

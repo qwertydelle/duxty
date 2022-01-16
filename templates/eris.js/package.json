@@ -1,0 +1,16 @@
+{
+    "name": "duxt_initial",
+    "version": "0.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "node index.js"
+    },
+    "dependencies": {
+        "eris": "latest",
+        "dotenv": "latest"
+     },
+     "devDependencies": {
+         "eslint": "latest"
+     }
+  }
