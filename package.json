@@ -8,20 +8,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qwertydelle/duxt.git"
+    "url": "git+https://github.com/qwertydelle/duxty.git"
   },
   "keywords": [
     "Discord",
-    "Library"
+    "Library",
+    "cli"
   ],
   "author": "Deca",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/qwertydelle/duxt/issues"
+    "url": "https://github.com/qwertydelle/duxty/issues"
   },
-  "homepage": "https://github.com/qwertydelle/duxt#readme",
+  "homepage": "https://github.com/qwertydelle/duxty#readme",
   "bin": {
-    "duxt": "index.js"
+    "duxt": "index.js",
+    "duxty": "index.js"
   },
   "dependencies": {
     "consola": "^2.15.3",

@@ -5,7 +5,25 @@ const path = require("path");
 const prompts = require("prompts");
 const consola = require("consola");
 const internal = require("stream");
+const { default: consolaGlobalInstance } = require("consola");
 const argv = require("minimist")(process.argv.slice(2))
+
+
+if(argv._[0] === "token") {
+    if(typeof argv._[1] !== "string") {
+        consola.error(new Error('Type of token must be a string'));
+        process.exit();
+    }
+
+    let token = argv._[1]
+    let json = 
+    `{\n    "token": "${token}"\n}`
+
+    fs.writeFileSync(path.join(__dirname, "config.json"), json);
+
+    consola.info("New token set")
+    process.exit();
+}
 
 //config for token
 var config = require(path.join(__dirname, "config.json"))
@@ -16,10 +34,12 @@ const botToken = getToken();
 var choices = getTemplates();
 var cwd = process.cwd();
 
-
-var optionChoices = [,
-    {title: "node_fetch", value: "node_fetch"},,
+//additional features
+var optionChoices = [
+    {title: "git", value: ".gitignore"},
+    {title: "node_fetch", value: "node_fetch"},
 ]
+
 
 //options
 const questions = [
@@ -41,17 +61,25 @@ const questions = [
         choices: choices
     },
     {
+        type: prev => !!botToken? null: "password",
+        name: "token",
+        message: "What is the bot token?",
+    },
+    {
         type: "multiselect",
         name: "options",
         message: "Select any additional options?",
         choices: optionChoices,
-        hint: '- > Space to select. Return to submit'
+        hint: "- > Space to select. Return to submit"
     }
 ];
 
 
+
 (async () => {
     const response = await prompts(questions);
+
+    console.log(response)
 
     var destDir = path.join(cwd, response.projectName);
 
@@ -84,23 +112,21 @@ const questions = [
 
 //functions
 
-function getTemplates() {
-    var ok = fs.readdirSync(path.join(__dirname, "templates")).map((value) => {
-        return {title: value, value: path.join(__dirname, "templates", value),}
-    });
 
-    return ok;
+//get a list of templates
+function getTemplates() {
+    return fs.readdirSync(path.join(__dirname, "templates")).map((value) => { return {title: value, value: path.join(__dirname, "templates", value),} });
 }
 
 function getToken() {
-    if(config.token) {
-        return config.token;
-    }else if(argv.t || argv.token) {
+    if(argv.t || argv.token) {
         if(typeof argv.t != "string" && typeof argv.token != "string") {
             consola.error(new Error('Type of token must be a string'));
             process.exit();
         }
         return argv.t || argv.token
+    }else  if(config.token) {
+        return config.token;
     }
 }
 
@@ -161,7 +187,7 @@ function init(template, name, des, options) {
         writeInFile(path.join(cwd, name, "index.js"), writeContent)
     }
 
-    //end
+    //end of program
     console.log(` `)
     console.log(` cd ${name}`)
     console.log(` npm install`)
