@@ -1,5 +1,5 @@
 # Duxty
-[![npm version](https://badge.fury.io/js/duxty.svg)](https://badge.fury.io/js/duxty)
+[![npm version](https://badge.fury.io/js/duxty.svg)](https://badge.fury.io/js/duxty) ![npm downloads](https://img.shields.io/npm/dw/duxty)
 
 ## Introduction
 
