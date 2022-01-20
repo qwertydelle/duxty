@@ -8,7 +8,7 @@ const internal = require("stream");
 const { default: consolaGlobalInstance } = require("consola");
 const argv = require("minimist")(process.argv.slice(2))
 
-
+//commands
 if(argv._[0] === "token") {
     if(typeof argv._[1] !== "string") {
         consola.error(new Error('Type of token must be a string'));
@@ -145,6 +145,9 @@ function writeInFile(filePath, content) {
 }
 
 function init(template, name, des, options) {
+    if (!fs.existsSync(path.join(template, "index.js") && !fs.existsSync(path.join(template, "package.json")))) {
+        
+    }
     fs.readdirSync(template).forEach((value) => {
 
         //check if the user wants to use git
@@ -160,8 +163,8 @@ function init(template, name, des, options) {
     });
 
     //changing package.json
-    let packagePath = path.join(cwd, name, "package.json")
-    let stuff = require(packagePath)
+    let packagePath = path.join(cwd, name, "package.json");
+    let stuff = require(packagePath);
     stuff.name = name;
     stuff.description = des;
     let writeContent = [];
