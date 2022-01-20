@@ -41,4 +41,4 @@ Duxty will automatically use the token provided as an argument. If that is not f
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+This project is licensed under the MIT License
