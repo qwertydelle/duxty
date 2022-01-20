@@ -10,7 +10,8 @@
   	"discord.js": "latest",
     "dotenv": "latest",
     "discord-api-types": "latest",
-    "@discordjs/rest": "latest"
+    "@discordjs/rest": "latest",
+    "@discordjs/builders": "latest"
    },
    "devDependencies": {
    	"eslint": "latest"

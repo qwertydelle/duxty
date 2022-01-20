@@ -105,6 +105,7 @@ const questions = [
         })();
     }else {
         fs.mkdirSync(path.join(cwd, response.projectName))
+        console.log(response.options)
         init(response.template, response.projectName, response.description, response.options)
     }
 })();
@@ -146,16 +147,18 @@ function writeInFile(filePath, content) {
 
 function init(template, name, des, options) {
     if (!fs.existsSync(path.join(template, "index.js") && !fs.existsSync(path.join(template, "package.json")))) {
-        
+        consola.error(new Error(`${template} doesnt contain the required files`));
+        process.exit();
     }
+
     fs.readdirSync(template).forEach((value) => {
 
         //check if the user wants to use git
         if(value === ".gitignore"){
-            if(options[0]) {
+            if(options.includes(".gitignore")) {
                 copy(path.join(template, value), path.join(cwd,name,value));
             }else {
-                return
+                return;
             }
         }else {
             copy(path.join(template, value), path.join(cwd,name,value))
@@ -174,9 +177,7 @@ function init(template, name, des, options) {
     options.forEach( value => {
         if (value === "node_fetch") {
             stuff.dependencies["node-fetch"] = "2.6.7"
-            writeContent.push(`const fetch = require("node-fetch");\n`)
-        }else if(value === "interactions") {
-            //quick
+            writeContent.push(`const fetch = require("node-fetch");\n`);
         }
     })
 
