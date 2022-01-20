@@ -26,7 +26,7 @@ if(argv._[0] === "token") {
 }
 
 if(argv._[0] === "version") {
-    console.log(require(path.join(__dirname, "package.json")).verison)
+    console.log(require(path.join(__dirname, "package.json")).version)
     process.exit();
 }
 
