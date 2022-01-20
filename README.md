@@ -38,3 +38,7 @@ Duxty also allows you to set a default token for all of your projects. This can 
 duxt token [token]
 ```
 Duxty will automatically use the token provided as an argument. If that is not found, it falls back to using the default token.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
