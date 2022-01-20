@@ -24,17 +24,17 @@ duxt
 You can also pass in a token for your project by using:
 
 ```bash
-duxt -t <token>
+duxt -t [token]
 ```
 or
 
 ```bash
-duxt --token <token>
+duxt --token=[token]
 ```
 
 Duxty also allows you to set a default token for all of your projects. This can be done by using:
 
 ```bash
-duxt token <token>
+duxt token [token]
 ```
 Duxty will automatically use the token provided as an argument. If that is not found, it falls back to using the default token.
