@@ -25,6 +25,22 @@ if(argv._[0] === "token") {
     process.exit();
 }
 
+if(argv._[0] === "token") {
+    if(typeof argv._[1] !== "string") {
+        consola.error(new Error('Type of token must be a string'));
+        process.exit();
+    }
+
+    let token = argv._[1]
+    let json = 
+    `{\n    "token": "${token}"\n}`
+
+    fs.writeFileSync(path.join(__dirname, "config.json"), json);
+
+    consola.info("New token set")
+    process.exit();
+}
+
 //config for token
 var config = require(path.join(__dirname, "config.json"))
 
@@ -105,7 +121,6 @@ const questions = [
         })();
     }else {
         fs.mkdirSync(path.join(cwd, response.projectName))
-        console.log(response.options)
         init(response.template, response.projectName, response.description, response.options)
     }
 })();
