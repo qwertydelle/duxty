@@ -109,7 +109,7 @@ const questions = [
         })();
     }else {
         fs.mkdirSync(path.join(cwd, response.projectName))
-        init(response.template, response.projectName, response.description, response.options)
+        init(response.template, response.projectName.trim(), response.description, response.options)
     }
 })();
 
