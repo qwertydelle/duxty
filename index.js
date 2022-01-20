@@ -182,7 +182,7 @@ function init(template, name, des, options) {
     })
 
 
-    fs.writeFileSync(packagePath, JSON.stringify(stuff));
+    fs.writeFileSync(packagePath, JSON.stringify(stuff, null, "\t"));
 
     //Writing in env
     fs.writeFileSync(path.join(cwd, name, ".env"), `DISCORD_TOKEN=${botToken}`)
