@@ -13,7 +13,9 @@
   "keywords": [
     "Discord",
     "Library",
-    "cli"
+    "cli",
+    "discordjs",
+    "discordapp"
   ],
   "author": "Deca",
   "license": "MIT",

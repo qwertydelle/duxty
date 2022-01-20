@@ -13,6 +13,12 @@ npm install -g duxty
 ```
 This was install duxty globally which allows you to use ``duxt`` 
 
+Check if it was installed correctly by using:
+
+```bash
+duxt version
+```
+
 ## Usage
 
 Starting a new project can be done by using:
