@@ -25,19 +25,8 @@ if(argv._[0] === "token") {
     process.exit();
 }
 
-if(argv._[0] === "token") {
-    if(typeof argv._[1] !== "string") {
-        consola.error(new Error('Type of token must be a string'));
-        process.exit();
-    }
-
-    let token = argv._[1]
-    let json = 
-    `{\n    "token": "${token}"\n}`
-
-    fs.writeFileSync(path.join(__dirname, "config.json"), json);
-
-    consola.info("New token set")
+if(argv._[0] === "version") {
+    console.log(require(path.join(__dirname, "package.json").version))
     process.exit();
 }
 
@@ -95,7 +84,6 @@ const questions = [
 (async () => {
     const response = await prompts(questions);
 
-    console.log(response)
 
     var destDir = path.join(cwd, response.projectName);
 
@@ -161,11 +149,6 @@ function writeInFile(filePath, content) {
 }
 
 function init(template, name, des, options) {
-    if (!fs.existsSync(path.join(template, "index.js") && !fs.existsSync(path.join(template, "package.json")))) {
-        consola.error(new Error(`${template} doesnt contain the required files`));
-        process.exit();
-    }
-
     fs.readdirSync(template).forEach((value) => {
 
         //check if the user wants to use git
