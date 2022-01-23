@@ -13,6 +13,18 @@ npm install -g duxty
 ```
 This was install duxty globally which allows you to use ``duxt`` 
 
+If you dont want to install duxt you can setup a project with:
+
+```bash
+npm init duxt
+```
+
+or 
+
+```bash
+npx create-duxt
+```
+
 Check if it was installed correctly by using:
 
 ```bash
