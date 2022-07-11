@@ -23,6 +23,16 @@ if(argv._[0] === "token") {
 
     consola.info("New token set")
     process.exit();
+} else if(argv._[0] === "templates") {
+    consola.info("Templates location: " + __dirname + "\\templates")
+
+    console.log("\n")
+
+    for(let i of getTemplates()) {
+        consola.success(i.title)
+    }
+
+    process.exit()
 }
 
 if(argv._[0] === "version") {
