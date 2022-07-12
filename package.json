@@ -1,6 +1,6 @@
 {
   "name": "duxty",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Discord.js setups done right",
   "main": "index.js",
   "scripts": {

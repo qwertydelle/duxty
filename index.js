@@ -44,7 +44,7 @@ if(argv._[0] === "version") {
 var config = require(path.join(__dirname, "config.json"))
 
 
-const botToken = getToken();
+var botToken = getToken();
 
 var choices = getTemplates();
 var cwd = process.cwd();
@@ -114,12 +114,12 @@ const questions = [
                 fsExtra.removeSync(destDir);
                 consola.info(`${destDir} replaced`);
                 fs.mkdirSync(path.join(cwd, response.projectName))
-                init(response.template, response.projectName, response.description, response.options)
+                init(response.template, response.projectName, response.description, response.options, response.token)
             }
         })();
     }else {
         fs.mkdirSync(path.join(cwd, response.projectName))
-        init(response.template, response.projectName.trim(), response.description, response.options)
+        init(response.template, response.projectName.trim(), response.description, response.options, response.token)
     }
 })();
 
@@ -139,7 +139,7 @@ function getToken() {
             process.exit();
         }
         return argv.t || argv.token
-    }else  if(config.token) {
+    }else if(config.token) {
         return config.token;
     }
 }
@@ -158,7 +158,7 @@ function writeInFile(filePath, content) {
     stream.write(final + data)
 }
 
-function init(template, name, des, options) {
+function init(template, name, des, options, token) {
     fs.readdirSync(template).forEach((value) => {
 
         //check if the user wants to use git
@@ -191,6 +191,12 @@ function init(template, name, des, options) {
 
 
     fs.writeFileSync(packagePath, JSON.stringify(stuff, null, "\t"));
+
+    if(botToken === undefined && token) {
+        botToken = token
+    }else {
+        botToken = "PUT_TOKEN_HERE"
+    }
 
     //Writing in env
     fs.writeFileSync(path.join(cwd, name, ".env"), `DISCORD_TOKEN=${botToken}`)
