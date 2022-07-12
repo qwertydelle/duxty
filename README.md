@@ -55,6 +55,13 @@ Duxty also allows you to set a default token for all of your projects. This can 
 ```bash
 duxt token [token]
 ```
+
+You can view the templates you have on your computer by using:
+
+```bash
+duxt templates
+```
+
 Duxty will automatically use the token provided as an argument. If that is not found, it falls back to using the default token.
 
 ## License
