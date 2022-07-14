@@ -8,7 +8,7 @@ const internal = require("stream");
 const { default: consolaGlobalInstance } = require("consola");
 const argv = require("minimist")(process.argv.slice(2))
 
-//other commands 
+//other commands for the app
 if(argv._[0] === "token") {
     if(typeof argv._[1] !== "string") {
         consola.error(new Error('Type of token must be a string'));
